@@ -15,7 +15,5 @@
         public List<Track> Tracks { get; set; } // Un album puede tener muchos tracks pero muchos tracks pertenecen a un album.
         public List<Review> Reviews { get; set; }
 
-        //public int TipoAlbumId { get; set; }
-        //public TipoAlbum TipoAlbum { get; set; }
     }
 }
