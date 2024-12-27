@@ -5,9 +5,9 @@ namespace MusicHaven
 {
     public class MusicContext(DbContextOptions options) : DbContext(options)
     {
-        public DbSet<TipoAlbum> TiposAlbum { get; set; }
-        public DbSet<Album> Albums { get; set; }
-        public DbSet<Track> Tracks { get; set; }
+        //public DbSet<TipoAlbum> TiposAlbum { get; set; }
+        //public DbSet<Album> Albums { get; set; }
+        //public DbSet<Track> Tracks { get; set; }
         //public DbSet<Review> Reviews { get; set; }
 
     }
