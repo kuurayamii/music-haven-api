@@ -12,5 +12,7 @@ namespace MusicHaven.Models
         [Required]
         public string NombreTipoAlbum { get; set; }
 
+        public Album Album { get; set; }
+
     }
 }

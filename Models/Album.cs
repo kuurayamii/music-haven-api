@@ -12,13 +12,22 @@ namespace MusicHaven.Models
         [Key]
         public int AlbumId { get; set; }
 
+
+        public int TipoAlbumId { get; set; }
+
+
+        public TipoAlbum TipoAlbum { get; set; }
+
+
         [Required]
         [MaxLength(150)]
         public string NombreAlbum { get; set; }
 
+
         [Required]
         [MaxLength(150)]
         public string NombreArtista { get; set; }
+
 
         [Required]
         public string Genero { get; set; }
