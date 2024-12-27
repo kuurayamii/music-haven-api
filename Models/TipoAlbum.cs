@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MusicHaven.Models
 {
@@ -12,7 +13,8 @@ namespace MusicHaven.Models
         [Required]
         public string NombreTipoAlbum { get; set; }
 
-        public Album Album { get; set; }
+        [JsonIgnore]
+        public ICollection<Album> Albums { get; set; }
 
     }
 }
