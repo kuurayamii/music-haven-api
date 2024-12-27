@@ -21,9 +21,9 @@ namespace MusicHaven
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TipoAlbum>().HasData(
-                new TipoAlbum { TipoAlbumId = 0, NombreTipoAlbum = "Single" },
-                new TipoAlbum { TipoAlbumId = 1, NombreTipoAlbum = "LP" },
-                new TipoAlbum { TipoAlbumId = 2, NombreTipoAlbum = "EP" }
+                new TipoAlbum { TipoAlbumId = 1, NombreTipoAlbum = "Single" },
+                new TipoAlbum { TipoAlbumId = 2, NombreTipoAlbum = "LP" },
+                new TipoAlbum { TipoAlbumId = 3, NombreTipoAlbum = "EP" }
             );
         }
     }
