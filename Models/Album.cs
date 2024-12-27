@@ -30,7 +30,7 @@ namespace MusicHaven.Models
         public string DescripcionAlbum { get; set; }
 
 
-        public int TipoAlbumId { get; set; }
-        public TipoAlbum TipoAlbum { get; set; }
+        public int? TipoAlbumId { get; set; }
+        public TipoAlbum? TipoAlbum { get; set; }
     }
 }
