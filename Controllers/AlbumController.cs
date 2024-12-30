@@ -8,48 +8,38 @@ namespace MusicHaven.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AlbumController : ControllerBase
+    public class AlbumController(MusicContext context) : ControllerBase
     {
-        IAlbumService albumService;
+        private readonly MusicContext _context = context;
 
         [HttpGet]
         public IActionResult GetAlbums()
         {
-            return Ok(albumService.GetAlbums());
+            throw new NotImplementedException();
         }
 
         [HttpGet("{id}")]
         public IActionResult GetAlbum(int id)
         {
-            var albumObtenido = albumService.GetAlbum(id);
-
-            if (albumObtenido != null)
-            {
-                return Ok(albumObtenido);
-            }
-            
-            return NotFound();
+            throw new NotImplementedException();
         }
 
         [HttpPost]
         public IActionResult PostAlbum([FromForm] Album album)
         {
-            albumService.PostAlbum(album);
-            return Ok();
+            throw new NotImplementedException();
         }
 
         [HttpPut("{id}")]
         public IActionResult Put([FromForm] int id, Album album) 
         {
-            albumService.PutAlbum(id, album);
-            return Ok();
+            throw new NotImplementedException();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete([FromForm] int id) 
         {
-            albumService.DeleteAlbum(id);
-            return Ok();
+            throw new NotImplementedException();
         }
     }
 }
