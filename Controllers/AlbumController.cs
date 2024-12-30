@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicHaven.Service;
 using MusicHaven.Models;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,9 +14,9 @@ namespace MusicHaven.Controllers
         private readonly MusicContext _context = context;
 
         [HttpGet]
-        public IActionResult GetAlbums()
+        public async Task <ActionResult<IEnumerable<Album>>> GetAlbums()
         {
-            throw new NotImplementedException();
+            return await _context.Albums.ToListAsync();
         }
 
         [HttpGet("{id}")]
