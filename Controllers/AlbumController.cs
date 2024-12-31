@@ -11,6 +11,7 @@ namespace MusicHaven.Controllers
     [Route("api/[controller]")]
     public class AlbumController(MusicContext context) : ControllerBase
     {
+
         private readonly MusicContext _context = context;
 
         [HttpGet]
@@ -22,25 +23,72 @@ namespace MusicHaven.Controllers
         [HttpGet("{id}")]
         public IActionResult GetAlbum(int id)
         {
-            throw new NotImplementedException();
+            var album = _context.Albums.Find(id);
+
+            if (album == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(album);
+
         }
 
         [HttpPost]
         public IActionResult PostAlbum([FromForm] Album album)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Albums.Add(album);
+                return Ok(album);
+            }
+            catch (Exception err) 
+            {
+                throw err; // Agarra la excepcion y la muestra por consola
+            }
+            
+
         }
 
         [HttpPut("{id}")]
         public IActionResult Put([FromForm] int id, Album album) 
         {
-            throw new NotImplementedException();
+            var albumAActualizar = _context.Albums.Find(id);
+
+            if (albumAActualizar == null) return NotFound();
+            try 
+            { 
+                albumAActualizar.AlbumId = album.AlbumId;
+                albumAActualizar.NombreAlbum = album.NombreAlbum;
+                albumAActualizar.NombreArtista = album.NombreArtista;
+                albumAActualizar.Genero = album.Genero;
+                albumAActualizar.DescripcionAlbum = album.DescripcionAlbum;
+                albumAActualizar.TipoAlbumId = album.TipoAlbumId;
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception err) 
+            { 
+                throw err;
+            }
+
+            
+            
+
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete([FromForm] int id) 
         {
-            throw new NotImplementedException();
+            var album = _context.Albums.Find(id);
+
+            if (album == null )
+            {
+                return NotFound();
+            }
+
+            _context.Albums.Remove(album);
+            return Ok();
         }
     }
 }
