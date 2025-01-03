@@ -76,7 +76,7 @@ namespace MusicHaven.Controllers
         // POST: api/TipoAlbum
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TipoAlbum>> PostTipoAlbum(TipoAlbum tipoAlbum)
+        public async Task<ActionResult<TipoAlbum>> PostTipoAlbum([FromForm]TipoAlbum tipoAlbum)
         {
             _context.TiposAlbum.Add(tipoAlbum);
             await _context.SaveChangesAsync();
@@ -89,6 +89,7 @@ namespace MusicHaven.Controllers
         public async Task<IActionResult> DeleteTipoAlbum(int id)
         {
             var tipoAlbum = await _context.TiposAlbum.FindAsync(id);
+
             if (tipoAlbum == null)
             {
                 return NotFound();
