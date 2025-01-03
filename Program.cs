@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MusicHaven;
+using MusicHaven.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Servicios que seran utilizados en los controladores.
+builder.Services.AddScoped<IAlbumService, AlbumService>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

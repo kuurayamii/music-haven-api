@@ -9,86 +9,47 @@ namespace MusicHaven.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AlbumController(MusicContext context) : ControllerBase
+    public class AlbumController(IAlbumService service) : ControllerBase
     {
 
-        private readonly MusicContext _context = context;
+        IAlbumService albumService = service;
 
         [HttpGet]
-        public async Task <ActionResult<IEnumerable<Album>>> GetAlbums()
+        public IActionResult Get()
         {
-            return await _context.Albums.ToListAsync();
+            return Ok(albumService.Get());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetAlbum(int id)
         {
-            var album = _context.Albums.Find(id);
 
-            if (album == null)
-            {
-                return NotFound();
-            }
+            var album = albumService.GetAlbum(id);
+
+            if (album == null) return NotFound();
 
             return Ok(album);
-
         }
 
         [HttpPost]
-        public IActionResult PostAlbum([FromForm] Album album)
+        public IActionResult PostAlbum(Album album)
         {
-            try
-            {
-                _context.Albums.Add(album);
-                return Ok(album);
-            }
-            catch (Exception err) 
-            {
-                throw err; // Agarra la excepcion y la muestra por consola
-            }
-            
-
+            albumService.PostAlbum(album);
+            return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromForm] int id, Album album) 
+        public IActionResult Put(int id, Album album) 
         {
-            var albumAActualizar = _context.Albums.Find(id);
-
-            if (albumAActualizar == null) return NotFound();
-            try 
-            { 
-                albumAActualizar.AlbumId = album.AlbumId;
-                albumAActualizar.NombreAlbum = album.NombreAlbum;
-                albumAActualizar.NombreArtista = album.NombreArtista;
-                albumAActualizar.Genero = album.Genero;
-                albumAActualizar.DescripcionAlbum = album.DescripcionAlbum;
-                albumAActualizar.TipoAlbumId = album.TipoAlbumId;
-                _context.SaveChanges();
-                return Ok();
-            }
-            catch (Exception err) 
-            { 
-                throw err;
-            }
-
-            
-            
-
+            albumService.PutAlbum(id, album);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromForm] int id) 
+        public IActionResult Delete(int id) 
         {
-            var album = _context.Albums.Find(id);
-
-            if (album == null )
-            {
-                return NotFound();
-            }
-
-            _context.Albums.Remove(album);
-            return Ok();
+            albumService.DeleteAlbum(id);
+            return NoContent();
         }
     }
 }

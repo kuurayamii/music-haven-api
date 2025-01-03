@@ -14,7 +14,7 @@ namespace MusicHaven.Models
         public string NombreTipoAlbum { get; set; }
 
         [JsonIgnore]
-        public ICollection<Album>? Albums { get; set; }
+        public virtual ICollection<Album>? Albums { get; set; }
 
     }
 }

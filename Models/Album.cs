@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MusicHaven.Models
 {
@@ -29,8 +30,10 @@ namespace MusicHaven.Models
 
         public string DescripcionAlbum { get; set; }
 
-
+        
         public int? TipoAlbumId { get; set; }
-        public TipoAlbum? TipoAlbum { get; set; }
+
+        
+        public virtual TipoAlbum? TipoAlbum { get; set; }
     }
 }
