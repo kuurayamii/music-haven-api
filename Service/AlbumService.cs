@@ -41,7 +41,7 @@ namespace MusicHaven.Service
         }
 
         // Modificar un album
-        public async Task PutAlbum(int id, Album album)
+        public async Task<Album?> PutAlbum(int id, Album album)
         {
             var albumAActualizar = context.Albums.Find(id);
 
@@ -56,6 +56,8 @@ namespace MusicHaven.Service
 
                 await context.SaveChangesAsync();
             }
+
+            return albumAActualizar;
         }
 
         // Eliminar un album
@@ -74,7 +76,7 @@ namespace MusicHaven.Service
         IEnumerable<Album> Get(); //Obtiene todos los albums
         Task<Album> GetAlbum(int id); // Obtiene un album
         Task PostAlbum(Album album); // Registra un album
-        Task PutAlbum(int id, Album album); // Actualiza un album
+        Task<Album?> PutAlbum(int id, Album album); // Actualiza un album
         Task DeleteAlbum(int id); // Borra un album
         
         

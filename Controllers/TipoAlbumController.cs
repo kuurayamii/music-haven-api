@@ -89,6 +89,7 @@ namespace MusicHaven.Controllers
         public async Task<IActionResult> DeleteTipoAlbum(int id)
         {
             var tipoAlbum = await _context.TiposAlbum.FindAsync(id);
+
             if (tipoAlbum == null)
             {
                 return NotFound();

@@ -21,10 +21,10 @@ namespace MusicHaven.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetAlbum(int id)
+        public async Task <IActionResult> GetAlbum(int id)
         {
 
-            var album = albumService.GetAlbum(id);
+            var album = await albumService.GetAlbum(id);
 
             if (album == null) return NotFound();
 
@@ -32,24 +32,24 @@ namespace MusicHaven.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostAlbum(Album album)
+        public async Task <IActionResult> PostAlbum(Album album)
         {
-            albumService.PostAlbum(album);
+            await albumService.PostAlbum(album);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Album album) 
+        public async Task <IActionResult> Put(int id, Album album) 
         {
-            albumService.PutAlbum(id, album);
-            return Ok();
+            var albumAActualizar = await albumService.PutAlbum(id, album);
+            return Ok(albumAActualizar);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id) 
+        public async Task <IActionResult> Delete(int id) 
         {
-            albumService.DeleteAlbum(id);
-            return NoContent();
+            await albumService.DeleteAlbum(id);
+            return Ok(albumService.Get()); //Retorna 200 (Ok) y muestra los datos existentes en la base de datos post eliminacion.
         }
     }
 }
