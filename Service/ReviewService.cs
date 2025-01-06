@@ -1,4 +1,5 @@
-﻿using MusicHaven.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicHaven.Models;
 
 namespace MusicHaven.Service
 {
@@ -6,9 +7,12 @@ namespace MusicHaven.Service
     {
         private readonly MusicContext context = dbContext;
 
-        public IEnumerable<Review> Get() 
+        public IEnumerable<Review> GetReviews() 
         {
-            throw new NotImplementedException();
+            return context.Reviews
+                .Include(review => review.Album)
+                .ToList();
+            //throw new NotImplementedException();
         }
 
         // Obtener una review en especifico
@@ -34,5 +38,14 @@ namespace MusicHaven.Service
         {
             throw new NotImplementedException();
         }
+    }
+
+    public interface IReviewService 
+    {
+        IEnumerable<Review> GetReviews();
+        Task<Review> GetReview(int idPostReview);
+        Task PostReview(Review review);
+        Task PutReview(int idPostReview, Review review);
+        Task DeleteReview(int idPostReview);
     }
 }
