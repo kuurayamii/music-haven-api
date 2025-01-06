@@ -18,7 +18,10 @@ namespace MusicHaven.Service
         // Obtener una review en especifico
         public async Task<Review> GetReview(int idPostReview)
         {
-            throw new NotImplementedException();
+            return await context.Reviews
+                .Include(review => review.Album)
+                .FirstOrDefaultAsync(review => review.ReviewId == idPostReview);
+
         }
 
         // Postear Review
