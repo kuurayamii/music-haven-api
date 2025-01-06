@@ -28,9 +28,6 @@ namespace MusicHaven.Service
             return await context.Albums
                 .Include(album => album.TipoAlbum)
                 .FirstOrDefaultAsync(album => album.AlbumId == id);
-            var album = await context.Albums
-                .Include(album => album.TipoAlbum)
-                .SingleAsync(album => album.AlbumId == id);
         }
 
         // Registrar un album
