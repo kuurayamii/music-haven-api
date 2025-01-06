@@ -32,8 +32,10 @@ namespace MusicHaven.Models
 
         
         public int? TipoAlbumId { get; set; }
-
-        
         public virtual TipoAlbum? TipoAlbum { get; set; }
+
+
+        [JsonIgnore]
+        public ICollection<Review> Reviews { get; set; } // Navegacion a tabla donde tiene su FK
     }
 }
