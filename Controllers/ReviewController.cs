@@ -40,14 +40,23 @@ namespace MusicHaven.Controllers
         [HttpPut("{id}")]
         public async Task <IActionResult> PutReview(int id, Review review)
         {
-            throw new NotImplementedException();
+
+            var reviewAEditar = await reviewService.PutReview(id, review);
+
+            if (reviewAEditar == null) return NotFound();
+
+            return Ok(reviewAEditar);
+
         }
 
         // Elimnar review
         [HttpDelete("{id}")]
         public async Task <IActionResult> DeleteReview(int id)
         {
-            throw new NotImplementedException();
+
+            await reviewService.DeleteReview(id);
+            return Ok();
+
         }
     }
 }
