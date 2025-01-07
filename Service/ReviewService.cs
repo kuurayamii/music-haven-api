@@ -27,7 +27,9 @@ namespace MusicHaven.Service
         // Postear Review
         public async Task PostReview(Review review) 
         {
-            throw new NotImplementedException();
+            context.Reviews.Add(review);
+            await context.SaveChangesAsync();
+
         }
 
         // Editar Review
