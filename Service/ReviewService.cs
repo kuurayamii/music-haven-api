@@ -3,7 +3,7 @@ using MusicHaven.Models;
 
 namespace MusicHaven.Service
 {
-    public class ReviewService(MusicContext dbContext)
+    public class ReviewService(MusicContext dbContext) : IReviewService
     {
         private readonly MusicContext context = dbContext;
 
