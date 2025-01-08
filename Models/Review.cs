@@ -10,7 +10,7 @@ namespace MusicHaven.Models
         public string CuerpoReview { get; set; }
         public int Rating { get; set; }
 
-        public virtual Album Album { get; set; }
+        public virtual Album? Album { get; set; }
 
  
     }
