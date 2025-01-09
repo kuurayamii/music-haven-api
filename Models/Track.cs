@@ -9,7 +9,7 @@ namespace MusicHaven.Models
         public int NumeroTrack { get; set; }
         public string NombreTrack { get; set; }
 
-        public virtual Album Album { get; set; }
+        public virtual Album? Album { get; set; }
 
 
     }
