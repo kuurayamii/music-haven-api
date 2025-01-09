@@ -8,7 +8,7 @@ using MusicHaven.Models;
 namespace MusicHaven.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[Controller]")]
     public class AlbumController(IAlbumService service) : ControllerBase
     {
 
@@ -48,8 +48,19 @@ namespace MusicHaven.Controllers
         [HttpDelete("{id}")]
         public async Task <IActionResult> Delete(int id) 
         {
-            await albumService.DeleteAlbum(id);
-            return Ok(albumService.Get()); //Retorna 200 (Ok) y muestra los datos existentes en la base de datos post eliminacion.
+            // Por algun extraño motivo, si pongo lo de abajo me tira error. Saque la asincronia de la funcion en el servicio
+            // y ya no suelta un error, pero, si no existe un objeto no retorna NotFound.
+            var albumAEliminar = albumService.DeleteAlbum(id);
+            //if (albumAEliminar == null)
+            //{
+            //    return NotFound();
+            //}
+            //if (albumAEliminar == null)
+            //{
+            //    return NotFound("No existe.");
+            //}
+            return NoContent();
+            //Retorna 200 (Ok) y muestra los datos existentes en la base de datos post eliminacion.
         }
     }
 }
