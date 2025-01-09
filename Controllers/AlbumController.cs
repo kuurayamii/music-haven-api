@@ -51,6 +51,7 @@ namespace MusicHaven.Controllers
             // Por algun extraño motivo, si pongo lo de abajo me tira error. Saque la asincronia de la funcion en el servicio
             // y ya no suelta un error, pero, si no existe un objeto no retorna NotFound.
             var albumAEliminar = albumService.DeleteAlbum(id);
+            System.Diagnostics.Debug.WriteLine(albumAEliminar);
             //if (albumAEliminar == null)
             //{
             //    return NotFound();

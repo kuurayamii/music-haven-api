@@ -105,10 +105,10 @@ namespace MusicHaven.Service
         */
         {
             var albumAEliminar = context.Albums.FirstOrDefault(album => album.AlbumId == id);
-            //if (albumAEliminar == null)
-            //{
-            //    return;
-            //}
+            if (albumAEliminar == null)
+            {
+                return;
+            }
             context.Albums.Remove(albumAEliminar);
 
             context.SaveChanges();
