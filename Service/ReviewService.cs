@@ -57,19 +57,22 @@ namespace MusicHaven.Service
             return reviewAEditar;
 
         }
-        
+
         // Eliminar Review
-        public async Task DeleteReview(int idPostReview)
+        public async Task<Review?> DeleteReview(int idPostReview)
         {
 
             var reviewAEliminar = await context.Reviews.FindAsync(idPostReview);
 
-            if (reviewAEliminar != null) 
+            if (reviewAEliminar == null) 
             {
-                context.Reviews.Remove(reviewAEliminar);
-                context.SaveChangesAsync();
+                return null;
             };
 
+            context.Reviews.Remove(reviewAEliminar);
+            context.SaveChangesAsync();
+
+            return reviewAEliminar;
             
         }
     }
@@ -80,6 +83,6 @@ namespace MusicHaven.Service
         Task<Review> GetReview(int idPostReview);
         Task PostReview(Review review);
         Task<Review> PutReview(int idPostReview, Review review);
-        Task DeleteReview(int idPostReview);
+        Task<Review?> DeleteReview(int idPostReview);
     }
 }
