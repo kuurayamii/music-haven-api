@@ -56,7 +56,7 @@ namespace MusicHaven.Controllers
         {
             var trackAEliminar = await trackService.DeleteTrack(id);
 
-            if (trackAEliminar == null) { return NotFound(); }
+            if (trackAEliminar == null) { return NotFound("La canción consultada no existe."); }
 
             return Ok();
         }
