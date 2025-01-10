@@ -12,6 +12,7 @@ namespace MusicHaven
         public DbSet<TipoAlbum> TiposAlbum { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Track> Tracks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

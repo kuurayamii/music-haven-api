@@ -54,7 +54,11 @@ namespace MusicHaven.Controllers
         public async Task <IActionResult> DeleteReview(int id)
         {
 
-            await reviewService.DeleteReview(id);
+            var reviewAEliminar = await reviewService.DeleteReview(id);
+            if (reviewAEliminar == null)
+            {
+                return NotFound("No se ha encontrado la review consultada a eliminar.");
+            }
             return Ok();
 
         }

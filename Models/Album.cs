@@ -36,6 +36,9 @@ namespace MusicHaven.Models
 
 
         [JsonIgnore]
-        public ICollection<Review> Reviews { get; set; } // Navegacion a tabla donde tiene su FK
+        public ICollection<Review>? Reviews { get; set; } // Navegacion a tabla donde tiene su FK
+
+        [JsonIgnore]
+        public ICollection<Track>? Tracks { get; set; }
     }
 }

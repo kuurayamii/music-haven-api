@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 // Servicios que seran utilizados en los controladores.
 builder.Services.AddScoped<IAlbumService, AlbumService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<ITrackService, TrackService>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

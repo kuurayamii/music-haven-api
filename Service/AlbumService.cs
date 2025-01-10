@@ -93,7 +93,7 @@ namespace MusicHaven.Service
         }
 
         
-        public async Task DeleteAlbum(int id)
+        public async Task<Album?> DeleteAlbum(int id)
         /* 
         Recupera un album segun su ID y lo elimina.
 
@@ -105,9 +105,18 @@ namespace MusicHaven.Service
         */
         {
             var albumAEliminar = context.Albums.Find(id);
+            //System.Diagnostics.Debug.WriteLine(albumAEliminar.GetType());
+            //System.Diagnostics.Debug.WriteLine($"Hola {albumAEliminar}");
+            if (albumAEliminar == null)
+            {
+                return null;
+            }
+
             context.Albums.Remove(albumAEliminar);
 
-            await context.SaveChangesAsync();
+            context.SaveChanges();
+            return albumAEliminar;
+
    
         }
     }
@@ -118,7 +127,7 @@ namespace MusicHaven.Service
         Task<Album> GetAlbum(int id); // Obtiene un album
         Task PostAlbum(Album album); // Registra un album
         Task<Album?> PutAlbum(int id, Album album); // Actualiza un album
-        Task DeleteAlbum(int id); // Borra un album
+        Task<Album?> DeleteAlbum(int id); // Borra un album
       
     }
 }

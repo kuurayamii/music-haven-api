@@ -8,7 +8,7 @@ using MusicHaven.Models;
 namespace MusicHaven.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[Controller]")]
     public class AlbumController(IAlbumService service) : ControllerBase
     {
 
@@ -48,8 +48,24 @@ namespace MusicHaven.Controllers
         [HttpDelete("{id}")]
         public async Task <IActionResult> Delete(int id) 
         {
-            await albumService.DeleteAlbum(id);
-            return Ok(albumService.Get()); //Retorna 200 (Ok) y muestra los datos existentes en la base de datos post eliminacion.
+            // Por algun extraño motivo, si pongo lo de abajo me tira error. Saque la asincronia de la funcion en el servicio
+            // y ya no suelta un error, pero, si no existe un objeto no retorna NotFound.
+
+            // EDIT: Despues de mucho debugging, un rosario entre las manos y 5 padres nuestros
+            // pude arreglar el bug agregando que retornase un objeto de tipo Album? en el servicio
+            // lo que lo hace totalmente opcional devolver algo en especifico al controlador.
+            // Gracias, Dios.
+
+            var albumAEliminar = await albumService.DeleteAlbum(id);
+            //System.Diagnostics.Debug.WriteLine($"Me llego esto desde AlbumService: {albumAEliminar}");
+            if (albumAEliminar == null)
+            {
+                //System.Diagnostics.Debug.WriteLine("Pase por el condicional, soy null");
+                return NotFound("El album consultado no existe.");
+            }
+
+            return NoContent(); //Retorna NoContent (Ok o 200 en el lado del cliente).
+
         }
     }
 }
