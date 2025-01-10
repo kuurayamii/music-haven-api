@@ -58,7 +58,7 @@ namespace MusicHaven.Controllers
 
             if (trackAEliminar == null) { return NotFound("La canción consultada no existe."); }
 
-            return Ok();
+            return Ok("Canción(es) ingresada(s) con éxito.");
         }
     }
 }
