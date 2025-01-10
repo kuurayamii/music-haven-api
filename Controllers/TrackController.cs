@@ -11,15 +11,17 @@ namespace MusicHaven.Controllers
         ITrackService trackService = service;
 
         [HttpGet]
-        IActionResult GetTracks() 
+        public IActionResult GetTracks() 
         {
             return Ok(trackService.GetTracks());
         }
 
         [HttpGet("{id}")]
-        public async Task <IActionResult> GetTrack(int trackId) 
+        public async Task <IActionResult> GetTrack(int id) 
         {
-            var track = await trackService.GetTrack(trackId);
+            var track = await trackService.GetTrack(id);
+
+            Console.WriteLine(track);
 
             if (track == null)
             {
@@ -36,10 +38,10 @@ namespace MusicHaven.Controllers
             return Ok();
         }
 
-        //[HttpPut("{id}")]
-        public async Task <IActionResult> PutTrack(int trackId, Track track) 
+        [HttpPut("{id}")]
+        public async Task <IActionResult> PutTrack(int id, Track track) 
         {
-            var trackAEditar = await trackService.PutTrack(trackId, track);
+            var trackAEditar = await trackService.PutTrack(id, track);
 
             if (trackAEditar == null)
             {
@@ -49,6 +51,14 @@ namespace MusicHaven.Controllers
             return Ok(trackAEditar);
         }
 
-        //[HttpDelete("{id}")]
+        [HttpDelete("{id}")]
+        public async Task <IActionResult> DeleteTrack(int id) 
+        {
+            var trackAEliminar = await trackService.DeleteTrack(id);
+
+            if (trackAEliminar == null) { return NotFound(); }
+
+            return Ok();
+        }
     }
 }
