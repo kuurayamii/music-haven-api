@@ -53,9 +53,20 @@ namespace MusicHaven.Service
         }
 
         // Eliminar un track (POR ID)
-        public async Task DeleteTrack(int idTrack, Track track) 
+        public async Task<Track?> DeleteTrack(int idTrack) 
         {
-            throw new NotImplementedException();
+            var trackAEliminar = context.Tracks.FirstOrDefault(track => track.TrackId == idTrack);
+
+            if (trackAEliminar == null)
+            {
+                return null;
+            }
+
+            context.Tracks.Remove(trackAEliminar);
+            await context.SaveChangesAsync();
+
+            return trackAEliminar;
+
         }
     }
 
@@ -65,6 +76,7 @@ namespace MusicHaven.Service
         Task<Track> GetTrack(int idTrack);
         Task PostTrack(Track track);
         Task<Track> PutTrack(int trackId, Track track); 
+        Task<Track?> DeleteTrack(int idTrack);
         
     }
 }
